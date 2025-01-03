@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Statistics</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/styles/style.css" />
+</head>
+
+<body>
+    <header>
+        <img src="/assets/logo.svg" alt="Logo" class="logo" />
+    </header>
+
+    <h1>Health Statistics Analysis</h1>
+    <!-- Introduction to the dashboard -->
+    <section>
+        <div></div>
+        <div>This dashboard contains 22 key statistics that provide insights into global mortality data.</div>
+        <div>There are four interactive charts after that allow exploration within the data.</div>
+    </section>
+
+    <!-- Basic Info Dashboard with key statistics -->
+    <section id="statistics">
+        <h2>Overview</h2>
+        <table border="1" cellspacing="0" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Statistic</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data Completeness and Coverage statistics -->
+                <tr>
+                    <td>Total Rows in Database</td>
+                    <td>
+                        <%= stats.totalRecords %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Percentage of Rows with Missing Mortality Data</td>
+                    <td>
+                        <%= stats.percentMissingMortality %>%
+                    </td>
+                </tr>
+                <tr>
+                    <td>Percentage of Rows with Missing Death Rate Data</td>
+                    <td>
+                        <%= stats.percentMissingDeathRate %>%
+                    </td>
+                </tr>
+                <tr>
+                    <td>Countries with Complete Data Across All Years</td>
+                    <td>
+                        <%= stats.countriesWithCompleteData %>
+                    </td>
+                </tr>
+
+                <!-- Time-Based Statistics -->
+                <tr>
+                    <td>Total Years Covered in the Database</td>
+                    <td>
+                        <%= stats.totalYears %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Earliest Year in the Database</td>
+                    <td>
+                        <%= stats.earliestYear %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Latest Year in the Database</td>
+                    <td>
+                        <%= stats.latestYear %>
+                    </td>
+                </tr>
+
+                <!-- Death Rate and Cause-Specific Statistics -->
+                <tr>
+                    <td>Average Death Rate Across All Records</td>
+                    <td>
+                        <%= stats.avgDeathRate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maximum Death Rate Recorded</td>
+                    <td>
+                        <%= stats.maxDeathRate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Minimum Death Rate Recorded</td>
+                    <td>
+                        <%= stats.minDeathRate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Average Percentage of Cause-Specific Deaths</td>
+                    <td>
+                        <%= stats.avgCauseSpecific %>
+                    </td>
+                </tr>
+
+                <!-- Geographic Distribution -->
+                <tr>
+                    <td>Region with the Most Mortality Data</td>
+                    <td>
+                        <%= stats.regionWithMostMortalityData %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country with the Highest Total Mortality</td>
+                    <td>
+                        <%= stats.countryWithHighestTotalMortality %>
+                    </td>
+                </tr>
+
+                <!-- Total Number of Countries -->
+                <tr>
+                    <td>Total Number of Countries</td>
+                    <td>
+                        <%= stats.totalCountries %>
+                    </td>
+                </tr>
+
+                <!-- Death Rate and Cause-Specific Statistics continued -->
+                <tr>
+                    <td>Average Death Rate Across All Records</td>
+                    <td>
+                        <%= stats.avgDeathRate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maximum Death Rate Recorded</td>
+                    <td>
+                        <%= stats.maxDeathRate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Minimum Death Rate Recorded</td>
+                    <td>
+                        <%= stats.minDeathRate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Average Percentage of Cause-Specific Deaths</td>
+                    <td>
+                        <%= stats.avgCauseSpecific %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maximum Percentage of Cause-Specific Deaths</td>
+                    <td>
+                        <%= stats.maxCauseSpecific %>
+                    </td>
+                </tr>
+
+                <!-- Time-Based Statistics continued -->
+                <tr>
+                    <td>Total Number of Years in the Database</td>
+                    <td>
+                        <%= stats.totalYears %>
+                    </td>
+                </tr>
+
+                <!-- Data Completeness and Coverage continued -->
+                <tr>
+                    <td>Countries with Missing Mortality Data</td>
+                    <td>
+                        <%= stats.percentMissingMortality %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Countries with Missing Death Rate Data</td>
+                    <td>
+                        <%= stats.percentMissingDeathRate %>
+                    </td>
+                </tr>
+
+                <!-- Total Mortality Data -->
+                <tr>
+                    <td>Total Mortality Records Across All Countries</td>
+                    <td>
+                        <%= stats.totalMortality %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Region with the Most Mortality Data</td>
+                    <td>
+                        <%= stats.regionWithMostMortalityData %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country with the Highest Total Mortality</td>
+                    <td>
+                        <%= stats.countryWithHighestTotalMortality %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Include interactive charts for each question -->
+    <%- include("partials/homeQ1") %>
+    <!-- Mortality by Region -->
+    <%- include("partials/homeQ2") %>
+    <!-- Mortality by Age Group in Regions -->
+    <%- include("partials/homeQ3") %>
+    <!-- Gender Difference in Mortality by Region -->
+    <%- include("partials/homeQ4") %>
+    <!-- Yearly Mortality by Country -->
+
+    <!-- Scripts for handling chart data -->
+    <script src="/scripts/scriptQ1.js"></script>
+    <script src="/scripts/scriptQ2.js"></script>
+    <script src="/scripts/scriptQ3.js"></script>
+    <script src="/scripts/scriptQ4.js"></script>
+</body>
+
+</html>
